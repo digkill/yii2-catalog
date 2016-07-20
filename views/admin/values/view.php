@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use yii\helpers\ArrayHelper;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Value */
@@ -29,7 +30,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'product_id',
-            'attribute_id',
+            [
+                'attribute' => 'category_id',
+                'value' => ArrayHelper::getValue($model, 'productAttribute.name'),
+            ],
+
             'value',
         ],
     ]) ?>

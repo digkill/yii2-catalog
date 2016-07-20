@@ -45,7 +45,7 @@ class Value extends \yii\db\ActiveRecord
     {
         return [
             'product_id' => 'Product ID',
-            'attribute_id' => 'Attribute ID',
+            'attribute_id' => 'Attribute',
             'value' => 'Value',
         ];
     }

@@ -17,6 +17,7 @@ use Yii;
  */
 class Category extends \yii\db\ActiveRecord
 {
+    public $products_count;
     /**
      * @inheritdoc
      */
@@ -32,7 +33,7 @@ class Category extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['parent_id'], 'integer'],
+            [['parent_id', 'products_count'], 'integer'],
             [['name'], 'string', 'max' => 255],
             [['parent_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute' => ['parent_id' => 'id']],
         ];
@@ -47,6 +48,7 @@ class Category extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Name',
             'parent_id' => 'Parent ID',
+            'products_count' => 'Products count',
         ];
     }
 

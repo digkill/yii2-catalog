@@ -62,12 +62,13 @@ class ValuesController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($product_id = null)
     {
         $model = new Value();
+        $model->product_id = $product_id;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'product_id' => $model->product_id, 'attribute_id' => $model->attribute_id]);
+            return $this->redirect(['admin/products/view', 'id' => $product_id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -87,7 +88,7 @@ class ValuesController extends Controller
         $model = $this->findModel($product_id, $attribute_id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'product_id' => $model->product_id, 'attribute_id' => $model->attribute_id]);
+            return $this->redirect(['admin/products/view', 'id' => $product_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -106,7 +107,7 @@ class ValuesController extends Controller
     {
         $this->findModel($product_id, $attribute_id)->delete();
 
-        return $this->redirect(['index']);
+        return $this->redirect(['admin/products/view', 'id' => $product_id]);
     }
 
     /**

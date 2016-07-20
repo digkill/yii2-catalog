@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use app\models\Category;
+use yii\db\Expression;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\admin\search\CategorySearch */
@@ -19,6 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Create Category', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -31,6 +33,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute' => 'parent_id',
                 'filter' => Category::find()->select(['name', 'id'])->indexBy('id')->column(),
                 'value' => 'parent.name',
+            ],
+            [
+                'attribute' => 'products_count',
+
             ],
 
             ['class' => 'yii\grid\ActionColumn'],

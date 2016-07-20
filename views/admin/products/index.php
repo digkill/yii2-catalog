@@ -3,6 +3,9 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use app\models\Category;
+use app\models\Product;
+use yii\helpers\ArrayHelper;
+use app\models\Tag;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\admin\search\ProductSearch */
@@ -34,7 +37,19 @@ $this->params['breadcrumbs'][] = $this->title;
             'name',
             'content:ntext',
             'price',
-            // 'active',
+            [
+                'label' => 'Tags',
+                'attribute' => 'tag_id',
+                'filter' => Tag::find()->select(['name', 'id'])->indexBy('id')->column(),
+                'value' => function (Product $product) {
+                    return (implode(', ', ArrayHelper::map($product->tags, 'id', 'name')));
+                },
+            ],
+            [
+                'attribute' => 'active',
+                'filter' => [0 => 'Нет', 1 => 'Да'],
+                'format' => 'boolean',
+            ],
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

@@ -7,4 +7,5 @@ return [
     'password' => '%Nlwg43wd@',
     'charset' => 'utf8',
     'tablePrefix' => 'sb_',
+    'enableSchemaCache' => true,
 ];
