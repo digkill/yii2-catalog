@@ -22,6 +22,8 @@ use Yii;
  */
 class Product extends \yii\db\ActiveRecord
 {
+    public $tagsArray;
+
     /**
      * @inheritdoc
      */

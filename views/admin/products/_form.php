@@ -1,8 +1,9 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use yii\bootstrap\ActiveForm;
 use app\models\Category;
+use app\models\Tag;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Product */
@@ -22,6 +23,8 @@ use app\models\Category;
     <?= $form->field($model, 'price')->textInput() ?>
 
     <?= $form->field($model, 'active')->textInput() ?>
+
+    <?= $form->field($model, 'tags')->checkboxList(Tag::find()->select(['name', 'id'])->indexBy('id')->column()) ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

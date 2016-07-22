@@ -76,7 +76,7 @@ class CategorySearch extends Category
             'parent_id' => $this->parent_id,
         ]);
 
-        if ($this->products_count !== '') {
+        if ($this->products_count !== '' || $this->products_count === 0) {
             $query->andHaving(['=', 'products_count', $this->products_count]);
         }
 
@@ -86,3 +86,4 @@ class CategorySearch extends Category
         return $dataProvider;
     }
 }
+
